@@ -4,46 +4,91 @@
 var app = app || {};
 
 app.draw = {
-   clear : function(ctx, x, y, w, h) {
-			ctx.clearRect(x, y, w, h);
+	clear : function(ctx, x,y,w,h)
+	{
+		ctx.clearRect(x,y,w,h);
 	},
 	
-	rect : function(ctx, x, y, w, h, col) {
-			ctx.fillStyle = col;
-			ctx.fillRect(x, y, w, h);
-	},
-	//draw just a border for menu selections
-	border :function(ctx, x, y, w, h, col) {
-		  ctx.lineWidth = 10;
-		  ctx.strokeStyle = col;
-          ctx.strokeRect(x, y, w, h);; 
-	},
-	circle : function(ctx, x, y, r, col) {
-			ctx.fillStyle = col;
-			ctx.beginPath();
-			ctx.arc(x + 5, y + 5, r, 0,  Math.PI * 2, true);
-			ctx.closePath();
-			ctx.fill();
+	rect : function(ctx, x, y, w, h, col)
+	{
+		ctx.save();
+		ctx.fillStyle = col;
+		ctx.fillRect(x,y,w,h);
+		ctx.restore();
 	},
 	
-	text : function(ctx, string, x, y, size, col) {
-			ctx.font = 'bold '+size+'px Monospace';
-			ctx.fillStyle = col;
-			ctx.fillText(string, x, y);
+	text: function(ctx, string, x, y, size, col)
+	{
+		ctx.save();
+		ctx.font = 'bold ' + size + 'px Monospace';
+		ctx.fillStyle = col;
+		ctx.fillText(string, x, y);
+		ctx.restore();
 	},
-	
-	backgroundGradient: function(ctx, width, height){
-		// Create gradient - top to bottom
-		var grd = ctx.createLinearGradient(width / 2, 0, width / 2, height);
-     
-		grd.addColorStop(0, '#593178');   
-      
-		grd.addColorStop(.5, '#250240');
-		grd.addColorStop(1, '#130121');
-		ctx.fillStyle = grd;
-		//ctx.fill();
-			
+	fadeText: function(ctx, string, x, y, size, col,alph)
+	{
+		ctx.save();
+		ctx.globalAlpha=alph;
+		ctx.font = 'bold ' + size + 'px Monospace';
+		ctx.fillStyle = col;
+		ctx.fillText(string, x, y);
+		ctx.restore();
+	},
+	fadeGradient: function(ctx, alph, img)
+	{
+		ctx.save();
+		ctx.globalAlpha=alph;
+		ctx.drawImage(img,0,0);
+		ctx.restore();
+	},
+	outlinedText: function(ctx, string, x, y, size, col, out)
+	{
+		ctx.save();
+		ctx.font = 'bold ' + size + 'px Monospace';
+		
+		
+		ctx.fillStyle = col;
+		ctx.strokeStyle = out;
+		ctx.fillText(string, x, y);
+		ctx.strokeText(string,x,y);
+		ctx.restore();
+	},
+	outRect : function(ctx, x, y, w, h, col, out)
+	{
+		ctx.save();
+		
+		ctx.fillStyle = col;
+		ctx.strokeStyle = out;
+		ctx.lineWidth = 5;
+		ctx.fillRect(x,y,w,h);
+		ctx.strokeRect(x,y,w,h);
+		ctx.restore();
+	},
+	backgroundGradient : function(ctx, width, height)
+	{
+		ctx.save();
+		ctx.fillStyle = "rgba(0.0,0.0,0.0,0.0)";
 		ctx.fillRect(0,0,width,height);
-	}
+		ctx.restore();
+	},
+	Shadowrect : function(ctx, x, y, w, h, col)
+	{
+		ctx.save();
+		ctx.shadowOffsetX = 0;
+		ctx.shadowOffsetY = 5;
+		ctx.shadowBlur = 10;
+		ctx.shadowColor ="#000"
+		ctx.fillStyle = col;
+		ctx.fillRect(x,y,w,h);
+		ctx.restore();
+	},
+	alpharect : function(ctx, x, y, w, h, col,alph)
+	{
+		ctx.save();
+		ctx.globalAlpha=alph;
+		ctx.fillStyle = col;
+		ctx.fillRect(x,y,w,h);
+		ctx.restore();
+	},
 			
 };

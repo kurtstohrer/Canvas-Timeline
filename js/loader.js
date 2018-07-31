@@ -49,6 +49,7 @@ Modernizr.load(
 		load : [
 			'js/polyfills.js',
 			'js/main.js',
+			'js/timeline.js',
 			'js/draw.js',
 			'js/utilities.js',
 		],
@@ -57,7 +58,7 @@ Modernizr.load(
 		complete: function(){
 			
 			// set up event handlers
-			window.onblur = function(){
+			/*window.onblur = function(){
 				app.paused = true;
 				cancelAnimationFrame(app.animationID);
 				app.keydown = []; // clear key daemon
@@ -66,14 +67,14 @@ Modernizr.load(
 		
 				
 			};
-			
+
 			window.onfocus = function(){
 				app.paused = false;
 				cancelAnimationFrame(app.animationID);
 				// start the animation back up
 				app.main.update();
 			
-			};
+			};*/
 			
 			// event listeners
 			window.addEventListener("keydown",function(e){
