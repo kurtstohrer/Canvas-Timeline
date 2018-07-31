@@ -17,7 +17,7 @@ app.main = {
 	
 	init: function () {
 		
-		this.setCanvasSize(400,400);
+		this.setCanvasSize(1000,400);
 		this.canvas = document.querySelector('canvas');
 		this.canvas.width = this.WIDTH;
 		this.canvas.height = this.HEIGHT;
@@ -25,7 +25,7 @@ app.main = {
 			// the canvas context enables us to 
 			// interact with the canvas api
 		this.ctx = this.canvas.getContext('2d');
-		this.timelines.push(new app.Timeline('7-1-2018','7-31-2018','July Timeline',[],[]));
+		this.timelines.push(new app.Timeline('7-1-2018','12-25-2018','July Timeline',[],[]));
 		this.update();
 	},
 	setCanvasSize:function(w,h){

@@ -50,8 +50,10 @@ Modernizr.load(
 			'js/polyfills.js',
 			'js/main.js',
 			'js/timeline.js',
+			'js/event.js',
 			'js/draw.js',
 			'js/utilities.js',
+			'js/libs/moment.js',
 		],
 		
 		// when the loading is complete, this function will be called
